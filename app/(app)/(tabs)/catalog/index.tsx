@@ -6,12 +6,15 @@ import ButtonBar from '@/shared/ButtonComponent/buttonBar/ButtonBar';
 import SearchInput from '@/shared/SearchInput/SearchInput';
 import CardList from '@/entities/card/ui/CardList';
 import { UnionKeys } from '@/shared/ButtonComponent/buttonBar/ButtonBar.type';
+import { useAtom } from 'jotai';
+import { activeModalAtom } from '../cart/success';
+import { ModalComponent } from '@/shared/Modal/ModalComponent';
 
 export default function Catalog() {
   const [text, onChangeText] = useState<string>('');
   const [activeKey, setActiveKey] = useState<UnionKeys>('Все');
   const [isFilter, setIsFilter] = useState<boolean>(true);
-
+  const [activeModal, setActiveModal] = useAtom(activeModalAtom);
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -34,6 +37,14 @@ export default function Catalog() {
           isFilter={isFilter}
         />
       </View>
+
+      <ModalComponent
+        visible={activeModal}
+        setVisible={setActiveModal}
+        text="Ваш заказ готов!"
+        descr="Курьер будет у Вас через 5 минут!"
+        buttonText="Иду встречать курьера"
+      />
     </View>
   );
 }
@@ -42,7 +53,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.lightBG,
   },
-
   header: {
     backgroundColor: Colors.black,
     padding: 30,

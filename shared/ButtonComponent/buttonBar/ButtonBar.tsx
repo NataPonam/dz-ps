@@ -39,6 +39,7 @@ export default function ButtonBar({
         horizontal={true}
         data={DATA}
         extraData={activeKey}
+        showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => (
           <Pressable onPress={() => buttonPressed(item)}>
             <Text

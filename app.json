@@ -1,16 +1,21 @@
 {
   "expo": {
     "name": "dz",
-    "slug": "dz",
+    "slug": "coffeeappdemo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
+    "extra": {
+      "eas": {
+        "projectId": "5d4dff20-a58e-4026-bebc-532740ec36cc"
+      }
+    },
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#010101"
     },
     "ios": {
       "supportsTablet": true
@@ -19,7 +24,11 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION"
+      ]
     },
     "web": {
       "bundler": "metro",
@@ -30,16 +39,31 @@
       "expo-router",
       [
         "expo-font",
-          {
-            "fonts": [
-              "./assets/fonts/Sora-Regular.ttf",
-              "./assets/fonts/Sora-SemiBold.ttf"
-                    ]
-          }
+        {
+          "fonts": [
+            "./assets/fonts/Sora-Regular.ttf",
+            "./assets/fonts/Sora-SemiBold.ttf"
+          ]
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow CoffeeApp app to use your location."
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./local/assets/notification-icon.png",
+          "color": "#ffffff",
+          "defaultChannel": "default"
+        }
       ]
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "owner": "natapo"
   }
 }

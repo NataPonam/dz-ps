@@ -11,7 +11,7 @@ export default function SearchInput({
   onChangeText: (prev: string) => void;
 }) {
   return (
-    <View style={styles.inputWrapper}>
+    <View style={styles.container}>
       <TextInput
         style={styles.input}
         placeholder="Найти кофе"
@@ -20,6 +20,7 @@ export default function SearchInput({
         value={text}
         autoCapitalize="none"
       />
+
       <Pressable style={styles.icon}>
         <SearchIcon />
       </Pressable>
@@ -27,13 +28,18 @@ export default function SearchInput({
   );
 }
 const styles = StyleSheet.create({
-  input: {
-    width: '100%',
+  container: {
+    paddingLeft: 48,
     height: 52,
     borderRadius: 16,
     backgroundColor: Colors.input,
     padding: 16,
-    paddingLeft: 48,
+    width: '100%',
+    fontSize: 14,
+    fontFamily: Fonts.regular,
+    color: Colors.white,
+  },
+  input: {
     fontSize: 14,
     fontFamily: Fonts.regular,
     color: Colors.white,
@@ -44,8 +50,5 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 16,
     left: 16,
-  },
-  inputWrapper: {
-    width: '100%',
   },
 });

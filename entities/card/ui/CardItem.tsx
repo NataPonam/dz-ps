@@ -5,8 +5,10 @@ import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
 import StarIcon from '@/assets/icons/StarIcon';
 import { BlurView } from 'expo-blur';
 import { Card } from '../model/card.model';
+import { router } from 'expo-router';
+import { currencyFormat } from '@/assets/utils/currencyFormat';
 
-export default function CardItem({ name, subTitle, price, image, rating }: Card) {
+export default function CardItem({ name, subTitle, price, image, rating, id }: Card) {
   return (
     <View style={styles.container}>
       <View>
@@ -16,7 +18,6 @@ export default function CardItem({ name, subTitle, price, image, rating }: Card)
           <Text style={styles.ratingText}>{rating}</Text>
         </BlurView>
       </View>
-
       <View style={styles.wrapper}>
         <View>
           <Text style={styles.title}>{name}</Text>
@@ -24,9 +25,9 @@ export default function CardItem({ name, subTitle, price, image, rating }: Card)
         </View>
         <View style={styles.priceWrapper}>
           <View>
-            <Text style={styles.price}>{price} ₽</Text>
+            <Text style={styles.price}>{currencyFormat(price)}</Text>
           </View>
-          <Pressable style={styles.button}>
+          <Pressable style={styles.button} onPress={() => router.navigate(`/(app)/${id}`)}>
             <Text style={styles.textButton}>+</Text>
           </Pressable>
         </View>

@@ -8,15 +8,12 @@ export default function CatalogLayout() {
   return (
     <SafeAreaProvider>
       <StatusBar style="light" backgroundColor="black" />
-      <Stack
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
+      <Stack>
         <Stack.Screen
           name="index"
           options={{
             statusBarColor: Colors.black,
+            headerShown: false,
           }}
         />
       </Stack>

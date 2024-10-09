@@ -18,14 +18,14 @@ export function ButtonComponent({
     Animated.timing(animatedValue, {
       toValue: 0,
       duration: 200,
-      useNativeDriver: true,
+      useNativeDriver: false,
     }).start();
   };
   const onPressButtonOut = () => {
     Animated.timing(animatedValue, {
       toValue: 100,
       duration: 200,
-      useNativeDriver: true,
+      useNativeDriver: false,
     }).start();
   };
   return (
@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     height: 62,
     borderRadius: 16,
+    backgroundColor: Colors.accentBrown,
   },
   text: {
     color: Colors.white,

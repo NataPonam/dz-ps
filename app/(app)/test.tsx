@@ -1,15 +1,12 @@
 import { Colors, Fonts } from '@/constants/Colors';
-import { ButtonComponent } from '@/shared/ButtonComponent/ButtonComponent';
-import { router } from 'expo-router';
 import React from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
 
-export default function UnmatchedPage() {
+export default function NotificationInformation() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Страница не найдена!</Text>
+      <Text style={styles.text}>Курьер уже в пути!</Text>
       <Image source={require('../../assets/images/coffee.png')} style={styles.img} />
-      <ButtonComponent text="Вернуться назад" onPress={() => router.back()} style={styles.button} />
     </View>
   );
 }
@@ -19,8 +16,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: Colors.white,
-    gap: 40,
-    padding: 30,
+    gap: 20,
   },
   text: {
     fontSize: 24,
@@ -32,8 +28,5 @@ const styles = StyleSheet.create({
   img: {
     height: 150,
     width: 150,
-  },
-  button: {
-    width: '100%',
   },
 });

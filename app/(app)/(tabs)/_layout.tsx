@@ -7,7 +7,6 @@ export default function CatalogLayout() {
     <Tabs
       screenOptions={{
         headerShown: false,
-        unmountOnBlur: true,
       }}
       tabBar={(props) => <CustomTabBar {...props} />}
     >
@@ -24,6 +23,7 @@ export default function CatalogLayout() {
         options={{
           title: 'Заказ',
           tabBarLabel: 'Заказ',
+          unmountOnBlur: true,
         }}
       />
     </Tabs>

@@ -1,11 +1,17 @@
+import { selectedCoffeListAtom } from '@/app/(app)/[alias]';
 import BagTabIcon from '@/assets/icons/tabsIcon/BagTabIcon';
 import HomeTabIcon from '@/assets/icons/tabsIcon/HomeTabIcon';
 import Underline from '@/assets/icons/tabsIcon/Underline';
-import { Colors } from '@/constants/Colors';
+import { Colors, Fonts } from '@/constants/Colors';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs/lib/typescript/src/types';
+import { useAtomValue } from 'jotai';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 
 export const CustomTabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
+  const selectedCoffeeList = useAtomValue(selectedCoffeListAtom);
+  const countItems = selectedCoffeeList.reduce((acc, item) => acc + item.quantity, 0);
+  const badge = countItems ? countItems : undefined;
+
   return (
     <View style={styles.container}>
       {state.routes.map((route, index) => {
@@ -55,7 +61,14 @@ export const CustomTabBar = ({ state, descriptors, navigation }: BottomTabBarPro
                 {route.name === 'catalog' ? (
                   <HomeTabIcon color={color} />
                 ) : (
-                  <BagTabIcon color={color} />
+                  <View>
+                    {badge && (
+                      <View style={styles.badge}>
+                        <Text style={styles.badgeText}>{countItems}</Text>
+                      </View>
+                    )}
+                    <BagTabIcon color={color} />
+                  </View>
                 )}
                 {isFocused ? (
                   <View style={styles.iconUnderline}>
@@ -82,7 +95,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: 70,
     backgroundColor: Colors.white,
-    shadowColor: Colors.shadowColor,
+    shadowColor: Colors.black,
     shadowOffset: {
       width: 0,
       height: -10,
@@ -96,6 +109,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0,
     borderColor: Colors.borderColor,
     alignItems: 'center',
+    elevation: 24,
   },
   item: {
     height: 46,
@@ -121,5 +135,26 @@ const styles = StyleSheet.create({
   text: {
     color: Colors.lightText,
     fontSize: 14,
+  },
+  badge: {
+    position: 'absolute',
+    top: -3,
+    right: -5,
+    height: 15,
+    width: 15,
+    backgroundColor: Colors.accentBrownClear,
+    borderRadius: 10,
+    borderColor: Colors.accentBrown,
+
+    borderWidth: 1,
+    zIndex: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  badgeText: {
+    fontSize: 10,
+    color: Colors.accentBrown,
+    fontFamily: Fonts.semibold,
+    lineHeight: 12,
   },
 });
